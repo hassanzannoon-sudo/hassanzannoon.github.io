@@ -1,8 +1,8 @@
-# 🛡️ SIEM & Detection Engineering (Wazuh)
+# 💻 Endpoint Forensics & Log Analysis (Sysmon/ELK)
 
 ### **1. 🚀 Executive Summary**
 
-This project established a functional **Security Information and Event Management (SIEM)** environment using **Wazuh** and the **Elastic Stack (Kibana)**. The goal was to move beyond simple logging to implement **proactive detection engineering** capabilities. I successfully built the core infrastructure, onboarded endpoints, and developed **custom, high-fidelity detection rules** to identify specific threat activities, significantly improving alert quality and operational visibility.
+This project demonstrates proficiency in **Endpoint Detection and Response (EDR)** principles using **Sysmon** for deep telemetry collection, forwarded to the **ELK Stack (Elasticsearch, Logstash, Kibana)** for analysis. I successfully configured Sysmon with a robust configuration, built the logging pipeline, and utilized the collected data to conduct a full **Incident Investigation** of a simulated adversary attack.
 
 
 
@@ -12,21 +12,24 @@ This project established a functional **Security Information and Event Managemen
 
 | Component | Role in Project | Demonstrated Skill |
 | :--- | :--- | :--- |
-| **Wazuh Manager** | Centralized analysis, correlation, and rule processing. | **SIEM Deployment & Configuration** |
-| **Wazuh Agents** | Installed on Windows and Linux endpoints. | **Endpoint Onboarding & Management** |
-| **Elastic Stack (Kibana)** | Used for data visualization, dashboard creation, and alert triage. | **Data Visualization & Log Aggregation** |
+| **Sysmon** | Provides high-fidelity, deep visibility into process creation (Event ID 1), network connections (Event ID 3), and file creation (Event ID 11). | **Endpoint Telemetry & Forensic Data Collection** |
+| **Winlogbeat / Logstash** | Used to ship and process Sysmon event logs to Elasticsearch. | **Log Pipeline Management & Data Normalization** |
+| **Kibana** | Utilized for querying data (KQL), visual analysis, and process tree reconstruction. | **Querying & Incident Investigation** |
 
-#### **Detection Engineering Focus**
+#### **Incident Investigation Scenario**
 
-* **Custom Rules:** Developed rules using Wazuh Decoders and Rulesets to detect unauthorized execution and privilege escalation attempts not covered by default configurations.
-* **Tuning:** Fine-tuned existing rules to minimize **False Positives (FPs)**, ensuring the SOC team only sees actionable alerts.
-* **Dashboard Creation:** Built a dedicated Kibana dashboard for L1/L2 analysts, allowing them to rapidly **triage, prioritize, and investigate** alerts based on threat score and MITRE ATT&CK ID.
+* **Scenario:** Simulated a common attack chain (e.g., initial macro execution leading to PowerShell C2 beaconing).
+* **Investigation Steps:**
+    1.  Identified the initial suspicious process creation using **Sysmon Event ID 1**.
+    2.  Traced the **Parent-Child Process relationships** to reconstruct the attack timeline.
+    3.  Identified network C2 connections using **Sysmon Event ID 3**.
+    4.  Determined the scope and impact using the full process execution graph.
 
 ---
 
 ### **3. 📈 Key Outcomes**
 
-* **Mitre ATT&CK Coverage:** Successfully implemented rules to detect techniques like **PowerShell abuse (T1059)** and **service creation (T1543)**.
-* **Alert Fidelity:** Proof of ability to create **high-fidelity alerts** that deliver actionable intelligence for threat hunting.
+* **Attack Mapping:** Successfully mapped the intrusion steps back to the relevant **MITRE ATT&CK** stages (e.g., Execution, Command and Control).
+* **Forensic Artifacts:** Extracted critical forensic artifacts, including Process IDs (PIDs), full Command Line arguments, and File Hash (SHA256).
 * **Evidence:**
-    * [Link to Custom Rule YML Files on GitHub]
+    * [Link to Sysmon Configuration File on GitHub]
