@@ -1,62 +1,180 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>SIEM Use Case — Hassan Zannoon</title>
-<meta name="description" content="SIEM Use Case (Wazuh) — detection engineering, dashboards, incident report."/>
-<style>
-  :root{--bg:#071426;--panel:#0b1220;--accent:#06b6d4;--muted:#9aa8b6;--radius:12px;--maxw:900px}
-  *{box-sizing:border-box}
-  body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;background:var(--bg);color:#e8f1f7;padding:28px}
-  .wrap{max-width:var(--maxw);margin:auto}
-  .panel{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:20px;border-radius:var(--radius);box-shadow:0 8px 30px rgba(0,0,0,0.6)}
-  h1{margin:0 0 8px 0}
-  .meta{color:var(--muted);margin-bottom:12px}
-  a.btn{display:inline-block;margin-right:10px;padding:10px 14px;border-radius:10px;text-decoration:none;font-weight:700}
-  .btn-primary{background:linear-gradient(90deg,var(--accent),#7c3aed);color:#02212a}
-  .btn-ghost{background:transparent;color:var(--muted);border:1px solid rgba(255,255,255,0.04)}
-  pre{background:#021426;padding:12px;border-radius:8px;overflow:auto}
-  table{width:100%;border-collapse:collapse;margin:12px 0}
-  td,th{padding:8px;border-bottom:1px solid rgba(255,255,255,0.03);vertical-align:top}
-  .back{display:inline-block;margin-bottom:12px;color:var(--accent);text-decoration:none}
-</style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Hassan Zannoon — SOC Analyst (Fresher)</title>
+  <meta name="description" content="Hassan Zannoon — Entry-level SOC Analyst. Projects: SIEM use-cases, Sysmon endpoint detection, network attack simulation. Resume & contact." />
+  <meta name="theme-color" content="#0f1724"/>
+  <style>
+    :root{
+      --bg:#071426;
+      --panel:#0b1220;
+      --muted:#9aa8b6;
+      --accent:#06b6d4;
+      --glass: rgba(255,255,255,0.03);
+      --radius:12px;
+      --maxw:1100px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial;
+      -webkit-font-smoothing:antialiased;
+      color:#e8f1f7;
+      background:linear-gradient(180deg,#071021 0%, #081426 70%);
+      padding:34px 18px;
+      display:flex;
+      justify-content:center;
+    }
+    .wrap{max-width:var(--maxw);width:100%}
+    header{display:flex;gap:18px;align-items:center;margin-bottom:22px}
+    .avatar{width:110px;height:110px;border-radius:14px;overflow:hidden;border:3px solid rgba(255,255,255,0.05);box-shadow:0 12px 30px rgba(0,0,0,0.6);flex:0 0 110px}
+    .avatar img{width:100%;height:100%;object-fit:cover;display:block}
+    .head{display:flex;flex-direction:column;gap:6px}
+    .name{font-weight:700;font-size:28px}
+    .subtitle{color:var(--muted);font-size:14px}
+    .actions{margin-top:10px;display:flex;gap:10px;flex-wrap:wrap}
+    .btn{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:10px;text-decoration:none;font-weight:700;font-size:14px}
+    .btn-primary{background:linear-gradient(90deg,var(--accent),#7c3aed);color:#02212a}
+    .btn-ghost{background:transparent;color:var(--muted);border:1px solid rgba(255,255,255,0.03)}
+    main{display:grid;grid-template-columns:1fr 360px;gap:22px}
+    .panel{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border-radius:var(--radius);padding:18px;box-shadow:0 8px 30px rgba(2,6,23,0.55)}
+    h2{margin:0 0 12px 0;font-size:18px}
+    .projects{display:grid;gap:12px}
+    .card{display:flex;gap:14px;align-items:flex-start;padding:12px;border-radius:10px;background:var(--glass);border:1px solid rgba(255,255,255,0.02)}
+    .card-thumb{width:96px;height:64px;border-radius:8px;background:#07131a;flex:0 0 96px;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:12px}
+    .card-body{flex:1}
+    .card-title{font-weight:700;margin:0 0 6px 0}
+    .card-desc{margin:0;color:var(--muted);font-size:14px}
+    .tags{margin-top:10px;display:flex;gap:8px;flex-wrap:wrap}
+    .tag{background:rgba(255,255,255,0.03);padding:6px 9px;border-radius:999px;font-size:12px;color:var(--muted)}
+    aside .meta-row{margin-bottom:12px}
+    aside .meta-row strong{display:block;color:var(--muted);font-size:13px;margin-bottom:6px}
+    .small{color:var(--muted);font-size:14px}
+    footer{margin-top:18px;color:var(--muted);font-size:13px;text-align:center}
+    @media(max-width:880px){
+      main{grid-template-columns:1fr}
+      aside{order:2}
+    }
+    .card:hover{transform:translateY(-4px);transition:transform .18s ease}
+    .link-row{margin-top:8px;font-size:13px;color:var(--muted)}
+    a[target="_blank"]{text-decoration:none}
+  </style>
 </head>
 <body>
-<div class="wrap">
-  <a class="back" href="/"><strong>← Back to portfolio</strong></a>
-  <div class="panel">
-    <h1>SIEM & Detection Engineering (Wazuh)</h1>
-    <div class="meta">By <strong>Hassan Zannoon</strong></div>
+  <div class="wrap">
+    <header>
+      <div class="avatar" aria-hidden="true">
+        <img src="avatar.jpg" alt="Hassan Zannoon">
+      </div>
+      <div class="head">
+        <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+          <div>
+            <div class="name">Hassan Zannoon</div>
+            <div class="subtitle">Aspiring SOC Analyst • SIEM • Log Analysis • Network Detection • Incident Response</div>
+          </div>
+        </div>
 
-    <p><strong>Executive summary:</strong> Built a functional Wazuh SIEM environment, onboarded Windows & Linux endpoints, and developed custom detection rules and dashboards to identify brute-force and suspicious PowerShell activity.</p>
+        <div class="actions">
+          <a class="btn btn-primary" href="resume.pdf" target="_blank" rel="noopener">Download Resume</a>
+          <a class="btn btn-ghost" href="mailto:hassanzannoon@gmail.com">Email</a>
+          <a class="btn btn-ghost" href="https://github.com/hassanzannoon-sudo" target="_blank" rel="noopener">GitHub</a>
+        </div>
+      </div>
+    </header>
 
-    <h3>MITRE ATT&CK Mapping</h3>
-    <ul>
-      <li>Brute-force login attempts — <strong>T1110</strong></li>
-      <li>New admin creation — <strong>T1543</strong></li>
-      <li>Suspicious PowerShell execution — <strong>T1059.001</strong></li>
-    </ul>
+    <main>
+      <section>
+        <div class="panel">
+          <h2>Selected Projects</h2>
 
-    <h3>Quick Commands</h3>
-    <pre><code># Install Wazuh Manager
-curl -s https://packages.wazuh.com/4.x/wazuh-install.sh | bash
-</code></pre>
+          <div class="projects" style="margin-top:10px;">
 
-    <h3>Evidence</h3>
-    <ul>
-      <li>alerts/alert-bruteforce.json</li>
-      <li>dashboards/logins.png</li>
-      <li>incident-report.md</li>
-    </ul>
+            <article class="card">
+              <div class="card-thumb" aria-hidden="true">SIEM</div>
+              <div class="card-body">
+                <div class="card-title">SIEM Use Case Implementation (Wazuh)</div>
+                <p class="card-desc">Built a Wazuh lab, onboarded endpoints, created detection rules and dashboards.
+                  <span class="link-row">
+                    <a href="projects/siem-usecase/siem-report.pdf" target="_blank" rel="noopener" style="color:var(--accent);font-weight:700">View Report →</a>
+                  </span>
+                </p>
+                <div class="tags"><span class="tag">Wazuh</span><span class="tag">SIEM</span><span class="tag">Detection</span></div>
+              </div>
+            </article>
 
-    <div style="margin-top:14px">
-      <a class="btn btn-primary" href="/projects/siem-usecase/siem-report.pdf" target="_blank">Download PDF Report</a>
-      <a class="btn btn-ghost" href="/projects/siem-usecase/incident-report.md" target="_blank">Open Incident (Markdown)</a>
-      <a class="btn btn-ghost" href="https://github.com/hassanzannoon-sudo/hassanzannoon.github.io/tree/main/projects/siem-usecase" target="_blank">View on GitHub</a>
-    </div>
+            <article class="card">
+              <div class="card-thumb" aria-hidden="true">Sysmon</div>
+              <div class="card-body">
+                <div class="card-title">Endpoint Detection Lab (Sysmon + ELK)</div>
+                <p class="card-desc">Configured Sysmon, forwarded telemetry to ELK and performed incident investigations.
+                  <span class="link-row">
+                    <a href="projects/endpoint-detection/endpoint-report.pdf" target="_blank" rel="noopener" style="color:var(--accent);font-weight:700">View Report →</a>
+                  </span>
+                </p>
+                <div class="tags"><span class="tag">Sysmon</span><span class="tag">ELK</span><span class="tag">Forensics</span></div>
+              </div>
+            </article>
 
+            <article class="card">
+              <div class="card-thumb" aria-hidden="true">Network</div>
+              <div class="card-body">
+                <div class="card-title">Network Attack Simulation</div>
+                <p class="card-desc">Simulated scans and brute-force attempts, captured Suricata alerts and produced IOCs.
+                  <span class="link-row">
+                    <a href="projects/network-attack-sim/network-report.pdf" target="_blank" rel="noopener" style="color:var(--accent);font-weight:700">View Report →</a>
+                  </span>
+                </p>
+                <div class="tags"><span class="tag">Kali</span><span class="tag">Suricata</span><span class="tag">Nmap</span></div>
+              </div>
+            </article>
+
+          </div>
+        </div>
+
+        <div class="panel" style="margin-top:18px">
+          <h2>About</h2>
+          <p class="small">Entry-level SOC Analyst with hands-on labs in SIEM, endpoint telemetry and network detection. Comfortable with log analysis, alert triage and incident investigation. Open to internships and entry-level SOC roles.</p>
+        </div>
+      </section>
+
+      <aside>
+        <div class="panel">
+          <h2>Quick Info</h2>
+          <div class="meta-row">
+            <strong>Email</strong>
+            <div><a style="color:var(--accent);text-decoration:none" href="mailto:hassanzannoon@gmail.com">hassanzannoon@gmail.com</a></div>
+          </div>
+          <div class="meta-row">
+            <strong>Phone</strong>
+            <div class="small">80899 39738</div>
+          </div>
+          <div class="meta-row">
+            <strong>Location</strong>
+            <div class="small">Bangalore, India</div>
+          </div>
+
+          <div style="margin-top:12px">
+            <h3 style="margin:0 0 8px 0;font-size:16px">Resume & Links</h3>
+            <div style="display:flex;gap:10px;flex-wrap:wrap">
+              <a class="btn btn-primary" href="resume.pdf" target="_blank" rel="noopener">Open Resume</a>
+              <a class="btn btn-ghost" href="https://linkedin.com/in/hassanzannoon" target="_blank" rel="noopener">LinkedIn</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel" style="margin-top:18px">
+          <h2>How to use</h2>
+          <p class="small">Click "View Report →" to open the project PDF. If you'd like the HTML project pages instead, tell me and I will change the links.</p>
+        </div>
+      </aside>
+    </main>
+
+    <footer>
+      <p class="small">Designed for recruiters — clear, concise & mobile-friendly.</p>
+    </footer>
   </div>
-</div>
 </body>
 </html>
