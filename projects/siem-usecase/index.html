@@ -19,63 +19,44 @@
   pre{background:#021426;padding:12px;border-radius:8px;overflow:auto}
   table{width:100%;border-collapse:collapse;margin:12px 0}
   td,th{padding:8px;border-bottom:1px solid rgba(255,255,255,0.03);vertical-align:top}
-  .tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
-  .tag{background:rgba(255,255,255,0.03);padding:6px 9px;border-radius:999px;color:var(--muted);font-size:13px}
   .back{display:inline-block;margin-bottom:12px;color:var(--accent);text-decoration:none}
 </style>
 </head>
 <body>
-  <div class="wrap">
-    <a class="back" href="/"><strong>← Back to portfolio</strong></a>
-    <div class="panel">
-      <h1>SIEM & Detection Engineering (Wazuh)</h1>
-      <div class="meta">By <strong>Hassan Zannoon</strong> — SIEM deployment, detection engineering & incident reporting</div>
+<div class="wrap">
+  <a class="back" href="/"><strong>← Back to portfolio</strong></a>
+  <div class="panel">
+    <h1>SIEM & Detection Engineering (Wazuh)</h1>
+    <div class="meta">By <strong>Hassan Zannoon</strong></div>
 
-      <p><strong>Executive summary:</strong> Built a functional Wazuh SIEM environment, onboarded Windows & Linux endpoints, and developed custom detection rules and dashboards to identify brute-force, privilege escalation, and suspicious PowerShell activity. Focus was on alert fidelity, triage efficiency and MITRE ATT&CK mapping.</p>
+    <p><strong>Executive summary:</strong> Built a functional Wazuh SIEM environment, onboarded Windows & Linux endpoints, and developed custom detection rules and dashboards to identify brute-force and suspicious PowerShell activity.</p>
 
-      <h3>Technical implementation (short)</h3>
-      <table>
-        <tr><th style="width:28%">Component</th><th>Role / Notes</th></tr>
-        <tr><td>Wazuh Manager</td><td>Central analysis, rule processing, alerting and dashboards (Ubuntu server)</td></tr>
-        <tr><td>Wazuh Agents</td><td>Installed on Windows & Linux endpoints for telemetry collection</td></tr>
-        <tr><td>Forwarding</td><td>Winlogbeat/Filebeat for additional log shipping (optional)</td></tr>
-      </table>
+    <h3>MITRE ATT&CK Mapping</h3>
+    <ul>
+      <li>Brute-force login attempts — <strong>T1110</strong></li>
+      <li>New admin creation — <strong>T1543</strong></li>
+      <li>Suspicious PowerShell execution — <strong>T1059.001</strong></li>
+    </ul>
 
-      <h3>Key detections & MITRE mapping</h3>
-      <ul>
-        <li>Brute-force login attempts — <strong>T1110</strong></li>
-        <li>New local admin creation — <strong>T1078 / T1543</strong></li>
-        <li>Suspicious PowerShell execution — <strong>T1059.001</strong></li>
-        <li>AV tampering — <strong>T1562</strong></li>
-      </ul>
-
-      <h3>Quick run commands</h3>
-      <pre><code># Install Wazuh Manager (example)
+    <h3>Quick Commands</h3>
+    <pre><code># Install Wazuh Manager
 curl -s https://packages.wazuh.com/4.x/wazuh-install.sh | bash
-
-# Example custom rule (concept)
-# place file under /var/ossec/rules/local_rules.xml
 </code></pre>
 
-      <h3>Evidence & files</h3>
-      <ul>
-        <li>dashboards/logins.png (dashboard screenshot)</li>
-        <li>rules/custom-rules.xml</li>
-        <li>alerts/alert-bruteforce.json</li>
-        <li>incident-report.md</li>
-      </ul>
+    <h3>Evidence</h3>
+    <ul>
+      <li>alerts/alert-bruteforce.json</li>
+      <li>dashboards/logins.png</li>
+      <li>incident-report.md</li>
+    </ul>
 
-      <div style="margin-top:14px">
-        <!-- PDF report (SIEM) -->
-        <a class="btn btn-primary" href="/projects/siem-usecase/siem-report.pdf" target="_blank" rel="noopener">Download PDF report</a>
-
-        <!-- Markdown incident (GitHub view) -->
-        <a class="btn btn-ghost" href="/projects/siem-usecase/incident-report.md" target="_blank" rel="noopener">Open incident (Markdown)</a>
-
-        <!-- GitHub repo view -->
-        <a class="btn btn-ghost" href="https://github.com/hassanzannoon-sudo/hassanzannoon.github.io/tree/main/projects/siem-usecase" target="_blank" rel="noopener">View on GitHub</a>
-      </div>
+    <div style="margin-top:14px">
+      <a class="btn btn-primary" href="/projects/siem-usecase/siem-report.pdf" target="_blank">Download PDF Report</a>
+      <a class="btn btn-ghost" href="/projects/siem-usecase/incident-report.md" target="_blank">Open Incident (Markdown)</a>
+      <a class="btn btn-ghost" href="https://github.com/hassanzannoon-sudo/hassanzannoon.github.io/tree/main/projects/siem-usecase" target="_blank">View on GitHub</a>
     </div>
+
   </div>
+</div>
 </body>
 </html>
